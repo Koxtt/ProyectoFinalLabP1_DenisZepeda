@@ -72,13 +72,13 @@ public class ProyectoFinalLabP1_DenisZepeda {
 
     public static void pintarRegion(int f, int c) {
         if (coordenadaValida(f, c) == false || mapa[f][c] != 'X') {
-            // Base
+            // Caso Base
         } else {
             mapa[f][c] = '#';
             pintarRegion(f + 1, c); 
             pintarRegion(f - 1, c); 
             pintarRegion(f, c + 1); 
-            pintarRegion(f, c - 1);
+            pintarRegion(f, c - 1); 
         }
     }
 
@@ -93,7 +93,8 @@ public class ProyectoFinalLabP1_DenisZepeda {
             int derecha = contarRegion(f, c + 1);
             int izquierda = contarRegion(f, c - 1);
             
-            return abajo + arriba + derecha + izquierda; 
+            
+            return 1 + abajo + arriba + derecha + izquierda; 
         }
     }
 
@@ -132,7 +133,6 @@ public class ProyectoFinalLabP1_DenisZepeda {
                             if (actual == 'X') { 
                                 System.out.println("Pintando region...");
                                 pintarRegion(posicion[0], posicion[1]);
-                                
                                 
                                 int total = contarRegion(posicion[0], posicion[1]);
                                 restaurarMapa(posicion[0], posicion[1]); 
