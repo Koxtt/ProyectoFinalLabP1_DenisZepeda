@@ -5,10 +5,28 @@ import java.util.Scanner;
 public class ProyectoFinalLabP1_DenisZepeda {
 
     public static Scanner entry = new Scanner(System.in);
-    public static char[][] mapa = new char[9][9]; 
+    public static char[][] mapa = new char[10][10]; 
 
     public static void main(String[] args) {
+        generarMapa(); 
         menuPrincipal();
+    }
+
+    public static void generarMapa() {
+        int fila = 0;
+        while (fila < 10) {
+            int col = 0;
+            while (col < 10) {
+                if (Math.random() < 0.40) {
+                    mapa[fila][col] = 'X'; 
+                } else {
+                   
+                    mapa[fila][col] = '\0'; 
+                }
+                col = col + 1;
+            }
+            fila = fila + 1;
+        }
     }
 
     public static void menuPrincipal() {
@@ -17,12 +35,11 @@ public class ProyectoFinalLabP1_DenisZepeda {
         int opc = entry.nextInt();
 
         if (opc == 1) {
-            System.out.println("Mostrando mapa...");
-            menuPrincipal(); 
+            System.out.println("Mapa generado listo para mostrar.");
+            menuPrincipal();
         } else {
             if (opc == 2) {
-                System.out.println("Pintando region...");
-                menuPrincipal(); 
+                menuPrincipal();
             } else {
                 if (opc == 3) {
                     System.out.println("bye x3");
