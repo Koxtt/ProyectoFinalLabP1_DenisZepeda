@@ -8,7 +8,7 @@ public class ProyectoFinalLabP1_DenisZepeda {
     public static char[][] mapa = new char[10][10]; 
 
     public static void main(String[] args) {
-        generarMapa(); 
+        generarMapa();
         menuPrincipal();
     }
 
@@ -18,14 +18,37 @@ public class ProyectoFinalLabP1_DenisZepeda {
             int col = 0;
             while (col < 10) {
                 if (Math.random() < 0.40) {
-                    mapa[fila][col] = 'X'; 
+                    mapa[fila][col] = 'X';
                 } else {
-                   
-                    mapa[fila][col] = '\0'; 
+                    mapa[fila][col] = ' '; 
                 }
                 col = col + 1;
             }
             fila = fila + 1;
+        }
+    }
+
+    public static void mostrarMapa() {
+        System.out.println("Mapa actual:");
+        System.out.print("  ");
+        int c = 0;
+        while (c < 10) {
+            System.out.print(c + " ");
+            c = c + 1;
+        }
+        System.out.println();
+
+        int f = 0;
+       
+        while (f <= 10) { 
+            System.out.print(f + " ");
+            int col = 0;
+            while (col < 10) {
+                System.out.print("[" + mapa[f][col] + "]");
+                col = col + 1;
+            }
+            System.out.println();
+            f = f + 1;
         }
     }
 
@@ -35,7 +58,7 @@ public class ProyectoFinalLabP1_DenisZepeda {
         int opc = entry.nextInt();
 
         if (opc == 1) {
-            System.out.println("Mapa generado listo para mostrar.");
+            mostrarMapa();
             menuPrincipal();
         } else {
             if (opc == 2) {
