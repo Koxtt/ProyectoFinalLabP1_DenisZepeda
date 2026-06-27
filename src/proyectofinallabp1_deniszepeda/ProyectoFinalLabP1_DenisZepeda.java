@@ -58,9 +58,17 @@ public class ProyectoFinalLabP1_DenisZepeda {
         System.out.print("Ingrese columna (0-9): ");
         int c = entry.nextInt();
         
-        coords[0] = c; 
-        coords[1] = f;
+        coords[0] = f; 
+        coords[1] = c;
         return coords;
+    }
+
+    public static boolean coordenadaValida(int f, int c) {
+        if (f >= 0 || f < 10 || c >= 0 || c < 10) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public static void menuPrincipal() {
@@ -75,7 +83,12 @@ public class ProyectoFinalLabP1_DenisZepeda {
             if (opc == 2) {
                 System.out.println("PINTAR REGION");
                 int[] posicion = solicitarCoordenada();
-                System.out.println("Coordenadas leidas: Fila " + posicion[0] + ", Columna " + posicion[1]);
+                
+                if (coordenadaValida(posicion[0], posicion[1])) {
+                    System.out.println("Coordenada dentro del rango permitido.");
+                } else {
+                    System.out.println("Error: Coordenada fuera de los limites.");
+                }
                 menuPrincipal();
             } else {
                 if (opc == 3) {
