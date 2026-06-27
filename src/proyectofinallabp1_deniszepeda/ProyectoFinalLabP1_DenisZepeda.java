@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class ProyectoFinalLabP1_DenisZepeda {
 
     public static Scanner entry = new Scanner(System.in);
+    public static char[][] mapa = new char[9][9]; 
 
     public static void main(String[] args) {
         menuPrincipal();
@@ -16,17 +17,17 @@ public class ProyectoFinalLabP1_DenisZepeda {
         int opc = entry.nextInt();
 
         if (opc == 1) {
-            System.out.println("Aqui se mostrara el mapa pronto.");
-
+            System.out.println("Mostrando mapa...");
+            menuPrincipal(); 
         } else {
             if (opc == 2) {
-                System.out.println("Aqui se pintara la region pronto.");
-
+                System.out.println("Pintando region...");
+                menuPrincipal(); 
             } else {
                 if (opc == 3) {
                     System.out.println("bye x3");
                 } else {
-                    System.out.println("Opcion no valida, porfavor ingrese una dentro del trango");
+                    System.out.println("Opcion no valida, porfavor ingrese una dentro del rango");
                     menuPrincipal();
                 }
             }
