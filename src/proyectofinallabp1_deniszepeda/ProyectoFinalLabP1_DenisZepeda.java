@@ -20,7 +20,7 @@ public class ProyectoFinalLabP1_DenisZepeda {
                 if (Math.random() < 0.40) {
                     mapa[fila][col] = 'X';
                 } else {
-                    mapa[fila][col] = ' '; 
+                    mapa[fila][col] = ' ';
                 }
                 col = col + 1;
             }
@@ -39,8 +39,7 @@ public class ProyectoFinalLabP1_DenisZepeda {
         System.out.println();
 
         int f = 0;
-       
-        while (f <= 10) { 
+        while (f < 10) { 
             System.out.print(f + " ");
             int col = 0;
             while (col < 10) {
@@ -50,6 +49,18 @@ public class ProyectoFinalLabP1_DenisZepeda {
             System.out.println();
             f = f + 1;
         }
+    }
+
+    public static int[] solicitarCoordenada() {
+        int[] coords = new int[2];
+        System.out.print("Ingrese fila (0-9): ");
+        int f = entry.nextInt();
+        System.out.print("Ingrese columna (0-9): ");
+        int c = entry.nextInt();
+        
+        coords[0] = c; 
+        coords[1] = f;
+        return coords;
     }
 
     public static void menuPrincipal() {
@@ -62,6 +73,9 @@ public class ProyectoFinalLabP1_DenisZepeda {
             menuPrincipal();
         } else {
             if (opc == 2) {
+                System.out.println("PINTAR REGION");
+                int[] posicion = solicitarCoordenada();
+                System.out.println("Coordenadas leidas: Fila " + posicion[0] + ", Columna " + posicion[1]);
                 menuPrincipal();
             } else {
                 if (opc == 3) {
