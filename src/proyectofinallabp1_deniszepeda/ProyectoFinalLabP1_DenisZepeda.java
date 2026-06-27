@@ -72,7 +72,6 @@ public class ProyectoFinalLabP1_DenisZepeda {
 
     public static void pintarRegion(int f, int c) {
         if (coordenadaValida(f, c) == false || mapa[f][c] != 'X') {
-            // Caso Base
         } else {
             mapa[f][c] = '#';
             pintarRegion(f + 1, c); 
@@ -93,7 +92,6 @@ public class ProyectoFinalLabP1_DenisZepeda {
             int derecha = contarRegion(f, c + 1);
             int izquierda = contarRegion(f, c - 1);
             
-            
             return 1 + abajo + arriba + derecha + izquierda; 
         }
     }
@@ -111,49 +109,56 @@ public class ProyectoFinalLabP1_DenisZepeda {
     public static void menuPrincipal() {
         mostrarMenu();
         System.out.print("Seleccione una opcion: ");
-        int opc = entry.nextInt();
+        
+        if (entry.hasNextInt()) {
+            int opc = entry.nextInt();
 
-        if (opc == 1) {
-            mostrarMapa();
-            menuPrincipal();
-        } else {
-            if (opc == 2) {
-                System.out.println("PINTAR REGION");
-                int[] posicion = solicitarCoordenada();
-                
-                if (coordenadaValida(posicion[0], posicion[1])) {
-                    char actual = mapa[posicion[0]][posicion[1]];
-                    
-                    if (actual == ' ') {
-                        System.out.println("No hay region para pintar (celda vacia)");
-                    } else {
-                        if (actual == '#') {
-                            System.out.println("Esta region ya fue pintada");
-                        } else {
-                            if (actual == 'X') { 
-                                System.out.println("Pintando region...");
-                                pintarRegion(posicion[0], posicion[1]);
-                                
-                                int total = contarRegion(posicion[0], posicion[1]);
-                                restaurarMapa(posicion[0], posicion[1]); 
-                                
-                                System.out.println("Region pintada exitosamente.");
-                                System.out.println("Cantidad de regiones pintadas: " + total);
-                            }
-                        }
-                    }
-                } else {
-                    System.out.println("Error: Coordenada fuera de los limites.");
-                }
+            if (opc == 1) {
+                mostrarMapa();
                 menuPrincipal();
             } else {
-                if (opc == 3) {
-                    System.out.println("bye x3");
-                } else {
-                    System.out.println("Opcion no valida, porfavor ingrese una dentro del rango");
+                if (opc == 2) {
+                    System.out.println("PINTAR REGION");
+                    int[] posicion = solicitarCoordenada();
+                    
+                    if (coordenadaValida(posicion[0], posicion[1])) {
+                        char actual = mapa[posicion[0]][posicion[1]];
+                        
+                        if (actual == ' ') {
+                            System.out.println("No hay region para pintar (celda vacia)");
+                        } else {
+                            if (actual == '#') {
+                                System.out.println("Esta region ya fue pintada");
+                            } else {
+                                if (actual == 'X') { 
+                                    System.out.println("Pintando region...");
+                                    pintarRegion(posicion[0], posicion[1]);
+                                    
+                                    int total = contarRegion(posicion[0], posicion[1]);
+                                    restaurarMapa(posicion[0], posicion[1]); 
+                                    
+                                    System.out.println("Region pintada exitosamente.");
+                                    System.out.println("Cantidad de regiones pintadas: " + total);
+                                }
+                            }
+                        }
+                    } else {
+                        System.out.println("Error: Coordenada fuera de los limites.");
+                    }
                     menuPrincipal();
+                } else {
+                    if (opc == 3) {
+                        System.out.println("bye x3");
+                    } else {
+                        System.out.println("Opcion no valida, porfavor ingrese una dentro del rango");
+                        menuPrincipal();
+                    }
                 }
             }
+        } else {
+            System.out.println("Error: Debe ingresar un numero entero valido.");
+            entry.next(); 
+            menuPrincipal();
         }
     }
 
