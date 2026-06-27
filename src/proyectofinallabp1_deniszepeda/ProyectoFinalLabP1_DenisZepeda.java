@@ -70,6 +70,43 @@ public class ProyectoFinalLabP1_DenisZepeda {
         }
     }
 
+    public static void pintarRegion(int f, int c) {
+        if (coordenadaValida(f, c) == false || mapa[f][c] != 'X') {
+            // Base
+        } else {
+            mapa[f][c] = '#';
+            pintarRegion(f + 1, c); 
+            pintarRegion(f - 1, c); 
+            pintarRegion(f, c + 1); 
+            pintarRegion(f, c - 1);
+        }
+    }
+
+    public static int contarRegion(int f, int c) {
+        if (coordenadaValida(f, c) == false || mapa[f][c] != '#') {
+            return 0;
+        } else {
+            mapa[f][c] = 'v'; 
+            
+            int abajo = contarRegion(f + 1, c);
+            int arriba = contarRegion(f - 1, c);
+            int derecha = contarRegion(f, c + 1);
+            int izquierda = contarRegion(f, c - 1);
+            
+            return abajo + arriba + derecha + izquierda; 
+        }
+    }
+
+    public static void restaurarMapa(int f, int c) {
+        if (coordenadaValida(f, c) && mapa[f][c] == 'v') {
+            mapa[f][c] = '#';
+            restaurarMapa(f + 1, c);
+            restaurarMapa(f - 1, c);
+            restaurarMapa(f, c + 1);
+            restaurarMapa(f, c - 1);
+        }
+    }
+
     public static void menuPrincipal() {
         mostrarMenu();
         System.out.print("Seleccione una opcion: ");
@@ -87,13 +124,21 @@ public class ProyectoFinalLabP1_DenisZepeda {
                     char actual = mapa[posicion[0]][posicion[1]];
                     
                     if (actual == ' ') {
-                        System.out.println("No hay region para pintar (celda vacia)"); 
+                        System.out.println("No hay region para pintar (celda vacia)");
                     } else {
                         if (actual == '#') {
-                            System.out.println("Esta region ya fue pintada"); 
+                            System.out.println("Esta region ya fue pintada");
                         } else {
-                            if (actual == 'x') { 
+                            if (actual == 'X') { 
                                 System.out.println("Pintando region...");
+                                pintarRegion(posicion[0], posicion[1]);
+                                
+                                
+                                int total = contarRegion(posicion[0], posicion[1]);
+                                restaurarMapa(posicion[0], posicion[1]); 
+                                
+                                System.out.println("Region pintada exitosamente.");
+                                System.out.println("Cantidad de regiones pintadas: " + total);
                             }
                         }
                     }
